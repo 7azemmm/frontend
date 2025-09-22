@@ -7,7 +7,14 @@ module.exports = {
   // Relative paths cannot be supported. Research by @nscur0 - https://owasp.slack.com/archives/CTC03GX9S/p1608400149085400
   publicPath: '.',
   devServer: {
-    proxy: { '/api': { target: process.env.VUE_APP_SERVER_URL } },
+    proxy: {
+      '/api': {
+        // Use env var if available, otherwise default to backend on localhost:8080
+        target: process.env.VUE_APP_SERVER_URL || 'http://localhost:8080',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
   },
   configureWebpack: {
     devtool: 'source-map',
