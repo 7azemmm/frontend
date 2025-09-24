@@ -50,6 +50,7 @@ jobs:
           if [ -z "$IMAGE_TAG" ]; then
             IMAGE_TAG=frontend
           fi
+
           docker build -t ${{ secrets.ECR_REGISTRY }}/hazem/frontend:$IMAGE_TAG .
           docker push ${{ secrets.ECR_REGISTRY }}/hazem/frontend:$IMAGE_TAG
 
