@@ -573,7 +573,7 @@ export default {
         data.latestVersion !== data.version
       ) {
         return (
-          <div style="white-space: nowrap;">
+         <div style="white-space: nowrap;">
             {data.label + ' '}
             <i
               id={'icon' + data.id}
