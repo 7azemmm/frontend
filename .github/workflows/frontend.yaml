@@ -54,15 +54,3 @@ jobs:
           docker build -t ${{ secrets.ECR_REGISTRY }}/hazem/frontend:$IMAGE_TAG .
           docker push ${{ secrets.ECR_REGISTRY }}/hazem/frontend:$IMAGE_TAG
 
-      - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.9.1
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: Deploy using Docker Compose
-        run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
-            cd /app
-            sudo docker-compose pull frontend
-            sudo docker-compose up -d frontend
-          EOF
